@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -12,10 +13,10 @@
             android:id="@+id/spinner_location"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toStartOf="@id/spinner_category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/support_simple_spinner_dropdown_item">
 
         </Spinner>
@@ -24,24 +25,24 @@
             android:id="@+id/spinner_category"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@id/spinner_location"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toStartOf="@id/button_register"
+            app:layout_constraintStart_toEndOf="@id/spinner_location"
+            app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/support_simple_spinner_dropdown_item">
 
         </Spinner>
 
-        i<Button
+        <Button
             android:id="@+id/button_register"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_marginEnd="2dp"
-            app:layout_constraintStart_toEndOf="@id/spinner_category"
-            app:layout_constraintEnd_toStartOf="@id/button_login"
-            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/register"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
-            tools:text="register">
+            app:layout_constraintEnd_toStartOf="@id/button_login"
+            app:layout_constraintStart_toEndOf="@id/spinner_category"
+            app:layout_constraintTop_toTopOf="parent">
 
         </Button>
 
@@ -50,11 +51,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/button_register"
+            android:text="@string/login"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
-            tools:text="Login">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_register"
+            app:layout_constraintTop_toTopOf="parent">
 
         </Button>
 
