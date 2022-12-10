@@ -45,6 +45,8 @@ class RegisterActivity : AppCompatActivity() {
                 intent.putExtra("User",newUser)
                 startActivity(intent)
                 setContentView(R.layout.activity_login)
+                return //start activity does not immediately launch activity so we need return to
+                //stop below code running
             }
             binding.textInputEditTextPassword.setText("")
             binding.textInputEditTextConfirmPassword.setText("")
