@@ -39,7 +39,7 @@
             android:id="@+id/text_input_edit_text_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email"
+            android:hint="@string/email"
             android:layout_marginBottom="24dp"
             android:inputType="textEmailAddress">
 
@@ -55,7 +55,7 @@
             android:id="@+id/text_input_edit_text_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password"
+            android:hint="@string/password"
             android:inputType="textPassword">
 
         </com.google.android.material.textfield.TextInputEditText>

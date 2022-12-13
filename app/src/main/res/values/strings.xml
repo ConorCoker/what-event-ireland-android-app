@@ -8,4 +8,18 @@
     <string name="back">Back</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="event_title">Event Title (required)</string>
+    <string name="event_category_required">Event Category (required)</string>
+    <string name="event_location_required">Event Location (required)</string>
+    <string name="event_description_required">Event Description (required)</string>
+    <string name="event_venue_required">Event Venue (required)</string>
+    <string name="event_price_required">Event Price (required)</string>
+    <string name="event_time_date_required">Event Time/Date (required)</string>
+    <string name="event_id">Event ID</string>
+    <string name="display_event_details">Display Event Details</string>
+    <string name="update_event_details">Update Event Details</string>
+    <string name="delete_event">Delete Event</string>
+    <string name="summary_of_all_events">Summary of All Events</string>
+    <string name="delete_your_account">Delete your Account</string>
 </resources>

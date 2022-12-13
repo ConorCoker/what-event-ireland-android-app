@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
                     binding.textInputEditTextPassword.text.toString()
                 )
                 val intent = Intent(this, LoginActivity::class.java)
-                intent.putExtra("User",newUser)
+                ArrayStorage.getInstance().addUser(newUser)
                 startActivity(intent)
                 setContentView(R.layout.activity_login)
                 return //start activity does not immediately launch activity so we need return to
