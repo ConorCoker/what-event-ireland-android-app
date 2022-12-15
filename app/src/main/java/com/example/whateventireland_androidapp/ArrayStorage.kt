@@ -50,4 +50,15 @@ class ArrayStorage private constructor() {
     fun getEvents(): ArrayList<Event> {
         return events
     }
+
+    fun deleteUserByEmail(email: String): Boolean {
+
+        return users.remove(getUserByEmail(email))
+    }
+
+    fun deleteEventByEventId(eventId: String): Boolean {
+
+        return false
+        //need to have events have auto generated ID's
+    }
 }

@@ -50,8 +50,24 @@ class OrganiserActivity : AppCompatActivity() {
         }
         binding.buttonDeleteAccount.setOnClickListener {
 
+            if (ArrayStorage.getInstance().deleteUserByEmail(user.email)){
+                val intent = Intent(this,LoginActivity::class.java)
+                startActivity(intent)
+                setContentView(R.layout.activity_login)
+            }
+            else{
+                Toast.makeText(this,"Something went wrong whilst deleting your account!",Toast.LENGTH_LONG).show()
+            }
+
         }
         binding.buttonDeleteEvent.setOnClickListener {
+
+            if (binding.textInputEditTextMainInput.text.toString().isNotBlank()){
+
+            }
+            else{
+                Toast.makeText(this,"Please enter an event ID to delete an event!",Toast.LENGTH_LONG).show()
+            }
 
         }
         binding.buttonDisplayEventDetails.setOnClickListener {
@@ -60,9 +76,9 @@ class OrganiserActivity : AppCompatActivity() {
         binding.buttonSummaryOfAllEvents.setOnClickListener {
             var stp = ""
             for (event in ArrayStorage.getInstance().getEvents()){
-                stp.plus(event.title)
+                stp += event.toString()
             }
-            binding.textViewMainOutput.text = stp //not working yet
+            binding.textViewMainOutput.text = stp
 
         }
         binding.buttonUpdateEventDetails.setOnClickListener {

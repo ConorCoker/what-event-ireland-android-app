@@ -22,6 +22,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(registerIntent)
             setContentView(R.layout.activity_register)
         }
+        binding.buttonLogin.setOnClickListener {
+            val loginIntent = Intent(this,LoginActivity::class.java)
+            startActivity(loginIntent)
+            setContentView(R.layout.activity_login)
+        }
 
     }
 }
