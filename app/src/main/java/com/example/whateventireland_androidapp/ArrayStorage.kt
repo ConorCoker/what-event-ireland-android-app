@@ -56,9 +56,23 @@ class ArrayStorage private constructor() {
         return users.remove(getUserByEmail(email))
     }
 
-    fun deleteEventByEventId(eventId: String): Boolean {
+    fun searchEventsById(id: Int): Event? {
 
+        for (event in events) {
+
+            if (id == event.getId()) {
+                return event
+            }
+        }
+        return null
+    }
+
+    fun deleteEventById(id: Int): Boolean {
+
+        if (searchEventsById(id) != null) {
+            events.remove(searchEventsById(id))
+            return true
+        }
         return false
-        //need to have events have auto generated ID's
     }
 }

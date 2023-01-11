@@ -12,6 +12,7 @@ class OrganiserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityOrganiserBinding
     private lateinit var user: User
+    private val utils: Utils = Utils()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +41,15 @@ class OrganiserActivity : AppCompatActivity() {
                     binding.textInputEditTextEventDate.text.toString()
                 )
                 ArrayStorage.getInstance().addEvent(newEvent)
-                Toast.makeText(this,"Event ${newEvent.title} has been created",Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Event ${newEvent.title} has been created", Toast.LENGTH_LONG)
+                    .show()
+                utils.clearTextFields(
+                    binding.textFieldInputEditTextEventTitle,
+                    binding.textInputEditTextEventDescription,
+                    binding.textInputEditTextEventVenue,
+                    binding.textInputEditTextEventPrice,
+                    binding.textInputEditTextEventDate
+                )
                 return@setOnClickListener
 
             } else {
@@ -50,23 +59,37 @@ class OrganiserActivity : AppCompatActivity() {
         }
         binding.buttonDeleteAccount.setOnClickListener {
 
-            if (ArrayStorage.getInstance().deleteUserByEmail(user.email)){
-                val intent = Intent(this,LoginActivity::class.java)
+            if (ArrayStorage.getInstance().deleteUserByEmail(user.email)) {
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 setContentView(R.layout.activity_login)
-            }
-            else{
-                Toast.makeText(this,"Something went wrong whilst deleting your account!",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Something went wrong whilst deleting your account!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
         }
         binding.buttonDeleteEvent.setOnClickListener {
 
-            if (binding.textInputEditTextMainInput.text.toString().isNotBlank()){
+            if (binding.textInputEditTextMainInput.text.toString().isNotBlank()) {
+                if (ArrayStorage.getInstance()
+                        .deleteEventById(binding.textInputEditTextMainInput.text.toString().toInt())
+                ) {
+                    Toast.makeText(this,"Event has been deleted!",Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(this,"Error event has not been deleted! Please check if event ID is correct!",Toast.LENGTH_LONG).show()
+                }
 
-            }
-            else{
-                Toast.makeText(this,"Please enter an event ID to delete an event!",Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Please enter an event ID to delete an event!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
 
         }
@@ -75,7 +98,7 @@ class OrganiserActivity : AppCompatActivity() {
         }
         binding.buttonSummaryOfAllEvents.setOnClickListener {
             var stp = ""
-            for (event in ArrayStorage.getInstance().getEvents()){
+            for (event in ArrayStorage.getInstance().getEvents()) {
                 stp += event.toString()
             }
             binding.textViewMainOutput.text = stp
