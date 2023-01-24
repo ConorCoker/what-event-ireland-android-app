@@ -13,6 +13,7 @@ class OrganiserActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOrganiserBinding
     private lateinit var user: User
     private val utils: Utils = Utils()
+    private var eventToUpdate: Event? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,10 +79,13 @@ class OrganiserActivity : AppCompatActivity() {
                 if (ArrayStorage.getInstance()
                         .deleteEventById(binding.textInputEditTextMainInput.text.toString().toInt())
                 ) {
-                    Toast.makeText(this,"Event has been deleted!",Toast.LENGTH_LONG).show()
-                }
-                else{
-                    Toast.makeText(this,"Error event has not been deleted! Please check if event ID is correct!",Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Event has been deleted!", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Error event has not been deleted! Please check if event ID is correct!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
             } else {
@@ -94,6 +98,33 @@ class OrganiserActivity : AppCompatActivity() {
 
         }
         binding.buttonDisplayEventDetails.setOnClickListener {
+            if (binding.textInputEditTextMainInput.text.toString().isNotBlank()) {
+                try {
+                    val event = ArrayStorage.getInstance().searchEventsById(
+                        binding.textInputEditTextMainInput.text.toString().toInt()
+                    )
+                    if (event != null) {
+                        binding.textViewMainOutput.text = event.toString()
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "${binding.textInputEditTextMainInput.text.toString()} is not a valid ID",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } catch (e: java.lang.NumberFormatException) {
+                    Toast.makeText(
+                        this,
+                        "${
+                            binding.textInputEditTextMainInput.text.toString().toInt()
+                        } is not a valid ID!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } else {
+                Toast.makeText(this, "Please enter an Event ID!", Toast.LENGTH_LONG).show()
+            }
 
         }
         binding.buttonSummaryOfAllEvents.setOnClickListener {
@@ -105,8 +136,88 @@ class OrganiserActivity : AppCompatActivity() {
 
         }
         binding.buttonUpdateEventDetails.setOnClickListener {
+            if (eventToUpdate == null) {
+                if (binding.textInputEditTextMainInput.text.toString().isNotBlank()) {
+                    try {
+                        eventToUpdate = ArrayStorage.getInstance().searchEventsById(
+                            binding.textInputEditTextMainInput.text.toString().toInt()
+                        )
+                        if (eventToUpdate != null) {
+                            Toast.makeText(
+                                this,
+                                "Change details above, then re-click 'Update event details' to save",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            utils.disableButtons(
+                                binding.buttonRegister,
+                                binding.buttonDisplayEventDetails,
+                                binding.buttonDeleteEvent,
+                                binding.buttonDeleteAccount,
+                                binding.buttonSummaryOfAllEvents
+                            )
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "${binding.textInputEditTextMainInput.text.toString()} is not a valid ID",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
 
+                    } catch (e: java.lang.NumberFormatException) {
+                        Toast.makeText(
+                            this,
+                            "${
+                                binding.textInputEditTextMainInput.text.toString().toInt()
+                            } is not a valid ID!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Please enter an Event ID!", Toast.LENGTH_LONG).show()
+                }
+
+            } else {
+                if (checkIsAllRequiredFieldsFilled()) {
+                    eventToUpdate!!.title = binding.textFieldInputEditTextEventTitle.text.toString()
+                    eventToUpdate!!.description =
+                        binding.textInputEditTextEventDescription.text.toString()
+                    eventToUpdate!!.venue =
+                        binding.textInputEditTextEventVenue.text.toString()
+                    try {
+                        eventToUpdate!!.price =
+                            binding.textInputEditTextEventPrice.text.toString().toDouble()
+                    } catch (e: java.lang.NumberFormatException) {
+                        Toast.makeText(this, "Event price must be a number!", Toast.LENGTH_LONG)
+                            .show()
+                    }
+                    eventToUpdate!!.date = binding.textInputEditTextEventDate.text.toString()
+                    ArrayStorage.getInstance().deleteEventById(eventToUpdate!!.getId())
+                    ArrayStorage.getInstance().addEvent(eventToUpdate!!)
+                    Toast.makeText(
+                        this,
+                        "Event ${eventToUpdate!!.title} has been updated!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    utils.enableButtons(
+                        binding.buttonRegister,
+                        binding.buttonDisplayEventDetails,
+                        binding.buttonDeleteEvent,
+                        binding.buttonDeleteAccount,
+                        binding.buttonSummaryOfAllEvents
+                    )
+                    eventToUpdate = null
+
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Please enter all fields to update your event!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
         }
+
     }
 
     private fun setupSpinners() {

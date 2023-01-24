@@ -22,4 +22,6 @@
     <string name="delete_event">Delete Event</string>
     <string name="summary_of_all_events">Summary of All Events</string>
     <string name="delete_your_account">Delete your Account</string>
+    <string name="registerr">Register</string>
+    <string name="update">Update</string>
 </resources>

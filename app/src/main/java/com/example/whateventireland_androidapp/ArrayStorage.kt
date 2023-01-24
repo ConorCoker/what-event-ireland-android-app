@@ -75,4 +75,22 @@ class ArrayStorage private constructor() {
         }
         return false
     }
+
+    fun getIdByEvent(event: Event): Int {
+        for (eventInArray in events) {
+            if (eventInArray == event) {
+                return eventInArray.getId()
+            }
+        }
+        return -999
+    }
+
+    fun getEventById(id: Int):Event?{
+        for (event in events){
+            if (event.getId()==id){
+                return event
+            }
+        }
+        return null
+    }
 }
