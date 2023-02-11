@@ -39,7 +39,8 @@ class OrganiserActivity : AppCompatActivity() {
                     binding.textInputEditTextEventDescription.text.toString(),
                     binding.textInputEditTextEventVenue.text.toString(),
                     binding.textInputEditTextEventPrice.text.toString().toDouble(),
-                    binding.textInputEditTextEventDate.text.toString()
+                    binding.textInputEditTextEventDate.text.toString(),
+                    0
                 )
                 ArrayStorage.getInstance().addEvent(newEvent)
                 Toast.makeText(this, "Event ${newEvent.title} has been created", Toast.LENGTH_LONG)

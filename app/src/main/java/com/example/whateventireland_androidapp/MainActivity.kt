@@ -16,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupSpinners()
         setupOnClickListeners()
+        val eventsAdapter = EventsAdapter(ArrayStorage.getInstance().getEvents())
+        binding.recyclerView.adapter=eventsAdapter
     }
 
     private fun setupOnClickListeners() {

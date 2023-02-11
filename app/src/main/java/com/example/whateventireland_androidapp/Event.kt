@@ -1,5 +1,6 @@
 package com.example.whateventireland_androidapp
 
+import android.media.Image
 import java.util.Random
 
 class Event(
@@ -7,7 +8,8 @@ class Event(
     var description: String,
     var venue: String,
     var price: Double,
-    var date: String
+    var date: String,
+    var image:Int
 ) {
 
     private val random: Random = Random()
@@ -19,5 +21,9 @@ class Event(
 
     fun getId(): Int {
         return id
+    }
+
+    fun getTitleAndDescription():String{
+        return title + description
     }
 }
