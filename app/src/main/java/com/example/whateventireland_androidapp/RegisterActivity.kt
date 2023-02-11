@@ -51,8 +51,10 @@ class RegisterActivity : AppCompatActivity() {
             binding.textInputEditTextPassword.setText("")
             binding.textInputEditTextConfirmPassword.setText("")
             Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Please enter all fields!", Toast.LENGTH_LONG).show()
         }
-        Toast.makeText(this, "Please enter all fields!", Toast.LENGTH_LONG).show()
+
     }
 
     private fun allFieldsFilled(): Boolean {
