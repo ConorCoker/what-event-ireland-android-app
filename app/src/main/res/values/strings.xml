@@ -24,4 +24,6 @@
     <string name="delete_your_account">Delete your Account</string>
     <string name="registerr">Register</string>
     <string name="update">Update</string>
+    <string name="choose_event_image">Choose Event Image</string>
+    <string name="event_image">Event Image</string>
 </resources>

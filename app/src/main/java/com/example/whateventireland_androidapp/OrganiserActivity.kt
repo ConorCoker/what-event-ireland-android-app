@@ -1,11 +1,19 @@
 package com.example.whateventireland_androidapp
 
 import android.content.Intent
+import android.icu.number.NumberFormatter.with
+import android.icu.number.NumberRangeFormatter.with
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.whateventireland_androidapp.databinding.ActivityOrganiserBinding
+import com.google.android.gms.cast.framework.media.ImagePicker
 
 
 class OrganiserActivity : AppCompatActivity() {
@@ -25,6 +33,14 @@ class OrganiserActivity : AppCompatActivity() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            val selectedImage=data.data
+            binding.imageViewEventImagePreview.setImageURI(selectedImage)
+        }
+    }
+
     private fun setupOnClickListeners() {
 
         binding.buttonLogout.setOnClickListener {
@@ -32,6 +48,15 @@ class OrganiserActivity : AppCompatActivity() {
             startActivity(intent)
             setContentView(R.layout.activity_main)
         }
+
+        binding.buttonChooseImage.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, 1)
+
+
+        }
+
         binding.buttonRegister.setOnClickListener {
             if (checkIsAllRequiredFieldsFilled()) {
                 val newEvent = Event(

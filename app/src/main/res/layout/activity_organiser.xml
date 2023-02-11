@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -133,8 +134,8 @@
                 android:id="@+id/text_input_edit_text_event_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/event_price_required">
+                android:hint="@string/event_price_required"
+                android:inputType="number">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -153,23 +154,30 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_edit_text_event_date"
                 android:layout_width="match_parent"
-                android:inputType="datetime"
                 android:layout_height="wrap_content"
-                android:hint="@string/event_time_date_required">
+                android:hint="@string/event_time_date_required"
+                android:inputType="datetime">
 
             </com.google.android.material.textfield.TextInputEditText>
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/text_view_todo"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/button_choose_image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TODO allow user to upload an image from here!"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time">
+            android:text="@string/choose_event_image"
+            app:layout_constraintStart_toEndOf="@id/image_view_event_image_preview"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time" />
 
-        </TextView>
+        <ImageView
+            android:id="@+id/image_view_event_image_preview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/event_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time"
+            tools:src="@drawable/ic_launcher_background" />
 
         <Button
             android:id="@+id/button_register"
@@ -178,7 +186,7 @@
             android:text="@string/register"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_todo">
+            app:layout_constraintTop_toBottomOf="@id/button_choose_image">
 
         </Button>
 
@@ -186,8 +194,8 @@
             android:id="@+id/text_view_main_output"
             android:layout_width="0dp"
             android:layout_height="100sp"
-            android:text=""
             android:background="#D3D3D3"
+            android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_register">
@@ -205,9 +213,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/text_input_edit_text_main_input"
                 android:layout_width="match_parent"
-                android:inputType="number"
                 android:layout_height="wrap_content"
-                android:hint="@string/event_id">
+                android:hint="@string/event_id"
+                android:inputType="number">
 
             </com.google.android.material.textfield.TextInputEditText>
 
