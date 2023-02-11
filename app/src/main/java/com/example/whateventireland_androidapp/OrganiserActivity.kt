@@ -221,33 +221,18 @@ class OrganiserActivity : AppCompatActivity() {
     }
 
     private fun setupSpinners() {
-        val spinnerValuesCategory = arrayOf(
-            "Cultural", "Community", "Educational", "Religious",
-            "Corporate", "Political", "Sports", "Comedy", "Music"
-        )
-        val spinnerValuesLocation = arrayOf(
-            "Dublin",
-            "Cork",
-            "Galway",
-            "Belfast",
-            "Derry",
-            "Limerick",
-            "Waterford",
-            "Sligo",
-            "Online"
-        )
 
         val spinnerAdapterCategory = ArrayAdapter(
             this,
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-            spinnerValuesCategory
+            ArrayStorage.getInstance().getCategories()
         )
         binding.spinnerCategory.adapter = spinnerAdapterCategory
 
         val spinnerAdapterLocation = ArrayAdapter(
             this,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            spinnerValuesLocation
+            ArrayStorage.getInstance().getLocations()
         )
         binding.spinnerLocation.adapter = spinnerAdapterLocation
     }

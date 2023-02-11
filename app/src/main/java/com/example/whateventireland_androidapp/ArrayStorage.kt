@@ -1,9 +1,12 @@
 package com.example.whateventireland_androidapp
 
+
 class ArrayStorage private constructor() {
 
     private val users: ArrayList<User> = ArrayList()
     private val events: ArrayList<Event> = ArrayList()
+    private val spinnerValuesCategory = fillCategorySpinner()
+    private val spinnerValuesLocation = fillLocationSpinner()
 
     companion object {
         private var instance: ArrayStorage? = null
@@ -22,6 +25,14 @@ class ArrayStorage private constructor() {
 
     fun getUsers(): ArrayList<User> {
         return users
+    }
+
+    fun getCategories():ArrayList<String>{
+        return spinnerValuesCategory
+    }
+
+    fun getLocations():ArrayList<String>{
+        return spinnerValuesLocation
     }
 
     fun isValidUserAndIsPasswordCorrect(email: String, password: String): Boolean {
@@ -85,12 +96,42 @@ class ArrayStorage private constructor() {
         return -999
     }
 
-    fun getEventById(id: Int):Event?{
-        for (event in events){
-            if (event.getId()==id){
+    fun getEventById(id: Int): Event? {
+        for (event in events) {
+            if (event.getId() == id) {
                 return event
             }
         }
         return null
+    }
+
+    private fun fillCategorySpinner(): ArrayList<String> {
+
+        return arrayListOf(
+            "Cultural",
+            "Community",
+            "Educational",
+            "Religious",
+            "Corporate",
+            "Political",
+            "Sports",
+            "Comedy",
+            "Music"
+        )
+    }
+
+    private fun fillLocationSpinner(): ArrayList<String> {
+
+        return arrayListOf(
+            "Dublin",
+            "Cork",
+            "Galway",
+            "Belfast",
+            "Derry",
+            "Limerick",
+            "Waterford",
+            "Sligo",
+            "Online"
+        )
     }
 }
