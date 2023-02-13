@@ -24,7 +24,4 @@ class Event(
         return id
     }
 
-    fun getTitleAndDescription():String{
-        return title + description
-    }
 }

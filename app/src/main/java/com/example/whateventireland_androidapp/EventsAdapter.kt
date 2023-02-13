@@ -29,7 +29,9 @@ class EventsAdapter(private val mList: ArrayList<Event>) :
         holder.imageView.setImageDrawable(itemsViewModel.image)
 
         // sets the text to the textview from our itemHolder class
-        holder.textView.text = itemsViewModel.getTitleAndDescription()
+        holder.textViewDetails.text = itemsViewModel.description
+
+        holder.textViewTitle.text = itemsViewModel.title
 
 
     }
@@ -42,6 +44,7 @@ class EventsAdapter(private val mList: ArrayList<Event>) :
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.image_view_event_image)
-        val textView: TextView = itemView.findViewById(R.id.text_view_event_details)
+        val textViewDetails: TextView = itemView.findViewById(R.id.text_view_event_details)
+        val textViewTitle:TextView = itemView.findViewById(R.id.text_view_event_title)
     }
 }

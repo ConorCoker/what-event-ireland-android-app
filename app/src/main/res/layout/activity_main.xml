@@ -5,30 +5,39 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_marginTop="24dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/what_event_ireland"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/button_register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
             android:id="@+id/spinner_location"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/recycler_view"
-            app:layout_constraintEnd_toStartOf="@id/spinner_category"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_register"
             tools:listitem="@layout/support_simple_spinner_dropdown_item">
 
         </Spinner>
 
         <Spinner
             android:id="@+id/spinner_category"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginStart="84dp"
             app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toStartOf="@id/button_register"
             app:layout_constraintStart_toEndOf="@id/spinner_location"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_register"
             tools:listitem="@layout/support_simple_spinner_dropdown_item">
 
         </Spinner>
@@ -39,9 +48,7 @@
             android:layout_height="0dp"
             android:layout_marginEnd="2dp"
             android:text="@string/register"
-            app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toStartOf="@id/button_login"
-            app:layout_constraintStart_toEndOf="@id/spinner_category"
             app:layout_constraintTop_toTopOf="parent">
 
         </Button>
@@ -52,9 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="2dp"
             android:text="@string/login"
-            app:layout_constraintBottom_toTopOf="@id/recycler_view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/button_register"
             app:layout_constraintTop_toTopOf="parent">
 
         </Button>
@@ -64,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/button_register"
+            app:layout_constraintTop_toBottomOf="@id/spinner_location"
             tools:listitem="@layout/item_event">
 
         </androidx.recyclerview.widget.RecyclerView>

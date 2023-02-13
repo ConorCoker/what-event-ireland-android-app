@@ -108,6 +108,7 @@ class ArrayStorage private constructor() {
     private fun fillCategorySpinner(): ArrayList<String> {
 
         return arrayListOf(
+            "Anything",
             "Cultural",
             "Community",
             "Educational",
@@ -123,6 +124,7 @@ class ArrayStorage private constructor() {
     private fun fillLocationSpinner(): ArrayList<String> {
 
         return arrayListOf(
+            "Anywhere",
             "Dublin",
             "Cork",
             "Galway",

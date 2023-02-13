@@ -14,12 +14,25 @@
             android:id="@+id/image_view_event_image"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/event_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background">
 
         </ImageView>
+
+        <TextView
+            android:id="@+id/text_view_event_title"
+            android:layout_marginStart="6dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/text_view_event_details"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_view_event_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Event Title">
+
+        </TextView>
 
         <TextView
             android:id="@+id/text_view_event_details"
@@ -29,8 +42,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_view_event_image"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/app_name">
+            app:layout_constraintTop_toBottomOf="@id/text_view_event_title"
+            tools:text="Event Description">
 
         </TextView>
 
