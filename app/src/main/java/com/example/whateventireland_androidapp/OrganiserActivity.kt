@@ -243,14 +243,14 @@ class OrganiserActivity : AppCompatActivity() {
         val spinnerAdapterCategory = ArrayAdapter(
             this,
             com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-            ArrayStorage.getInstance().getCategories()
+            ArrayStorage.getInstance().getCategories().subList(1,ArrayStorage.getInstance().getCategories().size)
         )
         binding.spinnerCategory.adapter = spinnerAdapterCategory
 
         val spinnerAdapterLocation = ArrayAdapter(
             this,
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-            ArrayStorage.getInstance().getLocations()
+            ArrayStorage.getInstance().getLocations().subList(1,ArrayStorage.getInstance().getLocations().size)
         )
         binding.spinnerLocation.adapter = spinnerAdapterLocation
     }
