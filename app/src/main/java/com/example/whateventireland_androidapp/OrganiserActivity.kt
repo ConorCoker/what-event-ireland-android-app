@@ -1,20 +1,12 @@
 package com.example.whateventireland_androidapp
 
 import android.content.Intent
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.activity.result.PickVisualMediaRequest
-import androidx.activity.result.contract.ActivityResultContracts
 import com.example.whateventireland_androidapp.databinding.ActivityOrganiserBinding
-import com.google.android.gms.cast.framework.media.ImagePicker
-
 
 class OrganiserActivity : AppCompatActivity() {
 
@@ -31,14 +23,6 @@ class OrganiserActivity : AppCompatActivity() {
         setupOnClickListeners()
         setupSpinners()
 
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
-            val selectedImage=data.data
-            binding.imageViewEventImagePreview.setImageURI(selectedImage)
-        }
     }
 
     private fun setupOnClickListeners() {
@@ -65,7 +49,7 @@ class OrganiserActivity : AppCompatActivity() {
                     binding.textInputEditTextEventVenue.text.toString(),
                     binding.textInputEditTextEventPrice.text.toString().toDouble(),
                     binding.textInputEditTextEventDate.text.toString(),
-                    0
+                    binding.imageViewEventImagePreview.drawable
                 )
                 ArrayStorage.getInstance().addEvent(newEvent)
                 Toast.makeText(this, "Event ${newEvent.title} has been created", Toast.LENGTH_LONG)
@@ -244,6 +228,14 @@ class OrganiserActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
+            val selectedImage = data.data
+            binding.imageViewEventImagePreview.setImageURI(selectedImage)
+        }
     }
 
     private fun setupSpinners() {

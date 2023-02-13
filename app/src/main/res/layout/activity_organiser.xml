@@ -171,21 +171,20 @@
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time" />
 
         <ImageView
+            android:src="@drawable/eps10_grey_circus_tent_fare_abstract_solid_icon_isolated_on_white_background_circus_festival_symbol_in_a_simple_flat_trendy_m"
             android:id="@+id/image_view_event_image_preview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:contentDescription="@string/event_image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time"
-            tools:src="@drawable/ic_launcher_background" />
+            app:layout_constraintTop_toBottomOf="@id/text_input_layout_event_date_time" />
 
         <Button
             android:id="@+id/button_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image_view_event_image_preview"
             app:layout_constraintTop_toBottomOf="@id/button_choose_image">
 
         </Button>

@@ -1,5 +1,6 @@
 package com.example.whateventireland_androidapp
 
+import android.graphics.drawable.Drawable
 import android.media.Image
 import java.util.Random
 
@@ -9,7 +10,7 @@ class Event(
     var venue: String,
     var price: Double,
     var date: String,
-    var image:Int
+    var image:Drawable?
 ) {
 
     private val random: Random = Random()
