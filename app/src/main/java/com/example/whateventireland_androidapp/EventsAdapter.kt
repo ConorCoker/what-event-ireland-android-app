@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EventsAdapter(private val mList: ArrayList<Event>) :
+class EventsAdapter(private val mList: ArrayList<Event>,private val listener: (Event) -> Unit) :
     RecyclerView.Adapter<EventsAdapter.ViewHolder>() {
 
     // create new views
@@ -32,6 +32,8 @@ class EventsAdapter(private val mList: ArrayList<Event>) :
         holder.textViewDetails.text = itemsViewModel.description
 
         holder.textViewTitle.text = itemsViewModel.title
+
+        holder.itemView.setOnClickListener { listener(itemsViewModel) }
 
 
     }

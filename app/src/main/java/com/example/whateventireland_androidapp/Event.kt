@@ -13,7 +13,7 @@ class Event(
     var image:Drawable?,
     var location:String,
     var category:String
-) {
+):java.io.Serializable{
 
     private val random: Random = Random()
     private val id = random.nextInt(10000)

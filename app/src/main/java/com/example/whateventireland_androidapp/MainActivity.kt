@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.example.whateventireland_androidapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,6 +17,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupSpinners()
         setupOnClickListeners()
+        loadRecyclerView()
+        val event1 = Event(
+            "Chess",
+            "Chess is fun",
+            "The 3 arena",
+            12.99,
+            "12/12/08",
+            null,
+            "Antrim",
+            "Education"
+        )
+        ArrayStorage.getInstance().addEvent(event1)
+    }
+
+    private fun loadRecyclerView() {
+        val eventsAdapter = EventsAdapter(
+            filter(
+                binding.spinnerLocation.selectedItem.toString(),
+                binding.spinnerCategory.selectedItem.toString()
+            )
+        ) {
+            moveToInDepthView(it)
+        }
+        binding.recyclerView.adapter = eventsAdapter
     }
 
     private fun setupOnClickListeners() {
@@ -30,14 +55,8 @@ class MainActivity : AppCompatActivity() {
             setContentView(R.layout.activity_login)
         }
         binding.buttonSearch.setOnClickListener {
-            filter(
-                binding.spinnerLocation.selectedItem.toString(),
-                binding.spinnerCategory.selectedItem.toString()
-            )
-            setContentView(binding.root)
+          loadRecyclerView()
         }
-
-
     }
 
     private fun setupSpinners() {
@@ -57,19 +76,24 @@ class MainActivity : AppCompatActivity() {
         binding.spinnerLocation.adapter = locationAdapter
     }
 
-    private fun filter(location: String, category: String) {
-        val eventsAdapter: EventsAdapter =
-            if (!location.contentEquals("Anywhere") && category.contentEquals("Anything")) {
-                EventsAdapter(ArrayStorage.getInstance().filterByLocation(location))
-            } else if (!category.contentEquals("Anything") && location.contentEquals("Anywhere")) {
-                EventsAdapter(ArrayStorage.getInstance().filterByCategory(category))
-            } else if (!location.contentEquals("Anywhere") && !category.contentEquals("Anything")) {
-                EventsAdapter(
-                    ArrayStorage.getInstance().filterByCategoryAndLocation(location, category)
-                )
-            } else {
-                EventsAdapter(ArrayStorage.getInstance().getEvents())
-            }
-        binding.recyclerView.adapter = eventsAdapter
+    private fun filter(location: String, category: String): ArrayList<Event> {
+
+        return if (!location.contentEquals("Anywhere") && category.contentEquals("Anything")) {
+            ArrayStorage.getInstance().filterByLocation(location)
+        } else if (!category.contentEquals("Anything") && location.contentEquals("Anywhere")) {
+            ArrayStorage.getInstance().filterByCategory(category)
+        } else if (!location.contentEquals("Anywhere") && !category.contentEquals("Anything")) {
+            ArrayStorage.getInstance().filterByCategoryAndLocation(location, category)
+        } else {
+            ArrayStorage.getInstance().getEvents()
+        }
+
+    }
+
+    private fun moveToInDepthView(eventToView: Event) {
+        val intent = Intent(this, EventInDepthActivity::class.java)
+        intent.putExtra("event", eventToView)
+        startActivity(intent)
+        setContentView(R.layout.activity_event_in_depth)
     }
 }
