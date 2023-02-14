@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupSpinners()
         setupOnClickListeners()
-        val eventsAdapter = EventsAdapter(ArrayStorage.getInstance().getEvents())
-        binding.recyclerView.adapter=eventsAdapter
     }
 
     private fun setupOnClickListeners() {
@@ -31,6 +29,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(loginIntent)
             setContentView(R.layout.activity_login)
         }
+        binding.buttonSearch.setOnClickListener {
+            filter(
+                binding.spinnerLocation.selectedItem.toString(),
+                binding.spinnerCategory.selectedItem.toString()
+            )
+            setContentView(binding.root)
+        }
+
 
     }
 
@@ -48,6 +54,22 @@ class MainActivity : AppCompatActivity() {
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
             ArrayStorage.getInstance().getLocations()
         )
-        binding.spinnerLocation.adapter=locationAdapter
+        binding.spinnerLocation.adapter = locationAdapter
+    }
+
+    private fun filter(location: String, category: String) {
+        val eventsAdapter: EventsAdapter =
+            if (!location.contentEquals("Anywhere") && category.contentEquals("Anything")) {
+                EventsAdapter(ArrayStorage.getInstance().filterByLocation(location))
+            } else if (!category.contentEquals("Anything") && location.contentEquals("Anywhere")) {
+                EventsAdapter(ArrayStorage.getInstance().filterByCategory(category))
+            } else if (!location.contentEquals("Anywhere") && !category.contentEquals("Anything")) {
+                EventsAdapter(
+                    ArrayStorage.getInstance().filterByCategoryAndLocation(location, category)
+                )
+            } else {
+                EventsAdapter(ArrayStorage.getInstance().getEvents())
+            }
+        binding.recyclerView.adapter = eventsAdapter
     }
 }

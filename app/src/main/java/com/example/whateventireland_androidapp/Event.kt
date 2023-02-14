@@ -10,7 +10,9 @@ class Event(
     var venue: String,
     var price: Double,
     var date: String,
-    var image:Drawable?
+    var image:Drawable?,
+    var location:String,
+    var category:String
 ) {
 
     private val random: Random = Random()

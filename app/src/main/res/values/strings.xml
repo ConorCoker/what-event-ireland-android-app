@@ -27,4 +27,5 @@
     <string name="choose_event_image">Choose Event Image</string>
     <string name="event_image">Event Image</string>
     <string name="what_event_ireland">What Event Ireland</string>
+    <string name="search">Search</string>
 </resources>

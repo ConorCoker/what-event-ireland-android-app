@@ -27,11 +27,11 @@ class ArrayStorage private constructor() {
         return users
     }
 
-    fun getCategories():ArrayList<String>{
+    fun getCategories(): ArrayList<String> {
         return spinnerValuesCategory
     }
 
-    fun getLocations():ArrayList<String>{
+    fun getLocations(): ArrayList<String> {
         return spinnerValuesLocation
     }
 
@@ -135,5 +135,44 @@ class ArrayStorage private constructor() {
             "Sligo",
             "Online"
         )
+    }
+
+    fun filterByLocation(location: String): ArrayList<Event> {
+
+        val listToReturn: ArrayList<Event> = ArrayList()
+
+        for (event in events) {
+            if (event.location.contentEquals(location)) {
+                listToReturn.add(event)
+            }
+        }
+        return listToReturn
+
+    }
+
+    fun filterByCategory(category: String): ArrayList<Event> {
+
+        val listToReturn: ArrayList<Event> = ArrayList()
+
+        for (event in events) {
+            if (event.category.contentEquals(category)) {
+                listToReturn.add(event)
+            }
+        }
+        return listToReturn
+
+    }
+
+    fun filterByCategoryAndLocation(location: String, category: String): ArrayList<Event> {
+
+        val listToReturn: ArrayList<Event> = ArrayList()
+
+        for (event in events) {
+            if (event.location.contentEquals(location) && event.category.contentEquals(category)) {
+                listToReturn.add(event)
+            }
+        }
+        return listToReturn
+
     }
 }
