@@ -109,15 +109,19 @@ class ArrayStorage private constructor() {
 
         return arrayListOf(
             "Anything",
-            "Cultural",
-            "Community",
-            "Educational",
-            "Religious",
-            "Corporate",
-            "Political",
+            "Music",
+            "Arts & Theatre",
             "Sports",
-            "Comedy",
-            "Music"
+            "Conferences",
+            "Community",
+            "Education",
+            "Festivals",
+            "Food & Drink",
+            "Fundraisers",
+            "Holiday",
+            "Networking",
+            "Nightlife",
+            "Religious"
         )
     }
 
@@ -125,14 +129,38 @@ class ArrayStorage private constructor() {
 
         return arrayListOf(
             "Anywhere",
-            "Dublin",
+            "Antrim",
+            "Armagh",
+            "Carlow",
+            "Cavan",
+            "Clare",
             "Cork",
-            "Galway",
-            "Belfast",
             "Derry",
+            "Donegal",
+            "Down",
+            "Dublin",
+            "Fermanagh",
+            "Galway",
+            "Kerry",
+            "Kildare",
+            "Kilkenny",
+            "Laois",
+            "Leitrim",
             "Limerick",
-            "Waterford",
+            "Longford",
+            "Louth",
+            "Mayo",
+            "Meath",
+            "Monaghan",
+            "Offaly",
+            "Roscommon",
             "Sligo",
+            "Tipperary",
+            "Tyrone",
+            "Waterford",
+            "Westmeath",
+            "Wexford",
+            "Wicklow",
             "Online"
         )
     }
